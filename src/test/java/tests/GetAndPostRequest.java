@@ -13,8 +13,8 @@ import static org.hamcrest.Matchers.*;
 public class GetAndPostRequest {
     @Test
     public  void GetAPI(){
-        baseURI ="https://reqres.in/api/";
-        given().get("/users?page=2").
+        baseURI ="https://reqres.in";
+        given().get("/api/users?page=2").
                 then().
                 statusCode(200).
                 body("data[1].first_name",equalTo("Lindsay")).
@@ -32,13 +32,13 @@ public class GetAndPostRequest {
         request.put("name","Parvez");
         request.put("job","Automation Engineer");
         System.out.println(request.toJSONString());
-        baseURI ="https://reqres.in/api/";
+        baseURI ="https://reqres.in";
         given().header("Content-Type","application/json").
                 contentType(ContentType.JSON).
                 accept(ContentType.JSON).
                 body(request.toJSONString()).
                 when().
-                post("/users").
+                post("api/users").
                 then().
                 statusCode(201)
                 .log().all();
